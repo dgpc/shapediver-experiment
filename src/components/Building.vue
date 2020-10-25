@@ -2,6 +2,14 @@
     <div class="building">
         <div ref="shapediver-viewport" style="width:100%; height:400px;"></div>
         <div ref="param-controls">
+            <label for="countV">Count V:</label>
+            <input v-model="modelParams['Count V']" type="number" step="1" id="countV">
+            <p>Count V is: {{ modelParams['Count V'] }}</p>
+
+            <label for="countH">Count H:</label>
+            <input v-model="modelParams['Count H']" type="number" step="1" id="countH">
+            <p>Count H is: {{ modelParams['Count H'] }}</p>
+
             <label for="numFloors">Num Floors:</label>
             <input v-model="modelParams.numFloors" type="number" step="1" id="numFloors">
             <p>Num Floors is: {{ modelParams.numFloors }}</p>
@@ -28,9 +36,11 @@ export default {
   data() {
     return {
         modelParams: {
-            numFloors: 3,
-            flipStructureOrientation: false,
-            structuralSystem: "Beams in Both Directions"
+            // numFloors: 3,
+            // flipStructureOrientation: false,
+            // structuralSystem: "Beams in Both Directions",
+            "Count V": 3,
+            "Count H": 3
         }
     }
   },
@@ -58,29 +68,22 @@ export default {
     // finally show the scene
     await this.shapeDiverAPI.plugins.refreshPluginAsync('BuildingCommPlugin');
     await this.shapeDiverAPI.updateSettingAsync('scene.show', true);
-    console.log("showing scene")
   },
-  /*watch: {
-      modelParams: this.shapeDiverAPI.parameters.updateAsync(this.modelParams)
-  },*/
+  watch: {
+    modelParams: { handler() { this.updateModelParams() }, deep: true }
+  },
   props: ["ticket", "modelViewUrl"],
+  methods: {
+        updateModelParams: function() {
+            console.log("updating model params")
+            let params = Object.keys(this.modelParams).map(p => ({name: p, value: this.modelParams[p]}))
+            this.shapeDiverAPI.parameters.updateAsync(params)
+        }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+/* CSS goes here */
 </style>
