@@ -2,30 +2,22 @@
     <div class="building">
         <div ref="shapediver-viewport" style="width:100%; height:400px;"></div>
         <div ref="param-controls">
-            <label for="countV">Count V:</label>
-            <input v-model="modelParams['Count V']" type="number" step="1" id="countV">
-            <p>Count V is: {{ modelParams['Count V'] }}</p>
-
-            <label for="countH">Count H:</label>
-            <input v-model="modelParams['Count H']" type="number" step="1" id="countH">
-            <p>Count H is: {{ modelParams['Count H'] }}</p>
-
             <label for="numFloors">Num Floors:</label>
-            <input v-model="modelParams.numFloors" type="number" step="1" id="numFloors">
-            <p>Num Floors is: {{ modelParams.numFloors }}</p>
+            <input v-model="modelParams['Number of Floors']" type="number" step="1" id="numFloors">
+            <p>Num Floors is: {{ modelParams['Number of Floors'] }}</p>
 
             <label for="flipStructureOrientation">Flip Structure Orientation:</label>
-            <input v-model="modelParams.flipStructureOrientation" type="checkbox" id="flipStructureOrientation">
-            <p>Flip Structure Orientation is: {{ modelParams.flipStructureOrientation }}</p>
+            <input v-model="modelParams['Flip Structure Orientation']" type="checkbox" id="flipStructureOrientation">
+            <p>Flip Structure Orientation is: {{ modelParams['Flip Structure Orientation'] }}</p>
 
             <label for="structuralSystem">Structural System:</label>
-            <select v-model="modelParams.structuralSystem" id="structuralSystem">
+            <select v-model="modelParams['Structural System']" id="structuralSystem">
                 <option>Beams in Both Directions</option>
                 <option>Beams in One Direction</option>
                 <option>Beams and Girders</option>
                 <option>Point Supported</option>
             </select>
-            <p>Structural System is: {{ modelParams.structuralSystem }}</p>
+            <p>Structural System is: {{ modelParams['Structural System'] }}</p>
         </div>
     </div>
 </template>
@@ -36,11 +28,9 @@ export default {
   data() {
     return {
         modelParams: {
-            // numFloors: 3,
-            // flipStructureOrientation: false,
-            // structuralSystem: "Beams in Both Directions",
-            "Count V": 3,
-            "Count H": 3
+            "Number of Floors": 3,
+            "Flip Structure Orientation": false,
+            "Structural System": "Beams in Both Directions"
         }
     }
   },
