@@ -12,10 +12,10 @@
 
             <label for="structuralSystem">Structural System:</label>
             <select v-model="modelParams['Structural System']" id="structuralSystem">
-                <option>Beams in Both Directions</option>
-                <option>Beams in One Direction</option>
-                <option>Beams and Girders</option>
-                <option>Point Supported</option>
+                <option value="1">Beams in Both Directions</option>
+                <option value="2">Beams in One Direction</option>
+                <option value="3">Beams and Girders</option>
+                <option value="0">Point Supported</option>
             </select>
             <p>Structural System is: {{ modelParams['Structural System'] }}</p>
         </div>
@@ -30,7 +30,7 @@ export default {
         modelParams: {
             "Number of Floors": 3,
             "Flip Structure Orientation": false,
-            "Structural System": "Beams in Both Directions"
+            "Structural System": 1
         }
     }
   },
