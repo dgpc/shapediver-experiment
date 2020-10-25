@@ -65,9 +65,13 @@ export default {
   props: ["ticket", "modelViewUrl"],
   methods: {
         updateModelParams: function() {
-            console.log("updating model params")
             let params = Object.keys(this.modelParams).map(p => ({name: p, value: this.modelParams[p]}))
-            this.shapeDiverAPI.parameters.updateAsync(params)
+            console.log("updating model params:", params)
+            this.shapeDiverAPI.parameters.updateAsync(params).then(
+                function(response) {
+                    console.log(response);
+                }
+            );
         }
   }
 }
